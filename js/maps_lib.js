@@ -163,6 +163,21 @@
         self.whereClause = self.locationColumn + " not equal to ''";
         
         //-----custom filters-----
+        if ( $("#select_type").val() != "")
+        self.whereClause += " AND Day = '" + $("#select_type").val() + "'";
+		
+		var type_column1 = "Food_";
+		var text1 = ""
+        if ( !$("#cbType1").is(':checked')) text1 += "Food_ = 0 OR Food_ = 1";
+		else text1 += "Food_ = 1"
+		self.whereClause += " AND " + text1
+		
+		var type_column1 = "Drink_";
+		var text2 = ""
+        if ( !$("#cbType2").is(':checked')) text2 += "Drink_ = 0 OR Drink_ = 1";
+		else text2 += "Drink_ = 1"
+		self.whereClause += " AND " + text2
+		
         //-----end of custom filters-----
 
         self.getgeoCondition(address, function (geoCondition) {
